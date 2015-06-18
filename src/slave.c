@@ -1328,7 +1328,11 @@ static void redirector_add (const char *server, int port, int interval)
 {
     redirect_host *redirect = calloc (1, sizeof (redirect_host));
     if (redirect == NULL)
+    {
+        ERROR0 ("slave.c l 1332");
         abort();
+    }
+
     redirect->server = strdup (server);
     redirect->port = port;
     if (interval == 0)

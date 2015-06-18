@@ -612,7 +612,11 @@ void *worker (void *arg)
 
         while (client)
         {
-            if (client->worker != worker) abort();
+            if (client->worker != worker)
+            {
+                ERROR0 ("slient.c l 617");
+                abort();
+            }
             /* process client details but skip those that are not ready yet */
             if (client->flags & CLIENT_ACTIVE)
             {

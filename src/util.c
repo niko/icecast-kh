@@ -760,7 +760,10 @@ static void rate_purge_entries (struct rate_calc *calc, uint64_t cutoff)
     {
         struct rate_calc_node *to_go = node;
         if (node == NULL || node->next == NULL)
+        {
+            ERROR0 ("util.c l 763");
             abort();
+        }
         count--;
         if (count)
         {

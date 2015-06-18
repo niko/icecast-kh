@@ -1066,6 +1066,7 @@ static void free_mp3_client_data (client_t *client)
     if (client->flags & CLIENT_WANTS_FLV)
     {
         free_flv_client_data (client);
+        ERROR0 ("format_mp3.c l 1069");
         abort ();
     }
     mpeg_cleanup (client_mp3->specific);

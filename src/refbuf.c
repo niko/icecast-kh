@@ -46,13 +46,19 @@ refbuf_t *refbuf_new_s (unsigned int size, const char *file, const int line)
 
     refbuf = (refbuf_t *)my_calloc (file, line, 1, sizeof(refbuf_t));
     if (refbuf == NULL)
+    {
+        ERROR0 ("refbuf.c l 50");
         abort();
+    }
     refbuf->data = NULL;
     if (size)
     {
         refbuf->data = my_calloc (file, line, 1, size);
         if (refbuf->data == NULL)
+        {
+            ERROR0 ("refbuf.c l 59");
             abort();
+        }
     }
     refbuf->len = size;
     refbuf->_count = 1;
@@ -68,13 +74,19 @@ refbuf_t *refbuf_new (unsigned int size)
 
     refbuf = (refbuf_t *)calloc(1, sizeof(refbuf_t));
     if (refbuf == NULL)
+    {
+        ERROR0 ("refbuf.c l 78");
         abort();
+    }
     refbuf->data = NULL;
     if (size)
     {
         refbuf->data = malloc (size);
         if (refbuf->data == NULL)
+        {
+            ERROR0 ("refbuf.c l 87");
             abort();
+        }
     }
     refbuf->len = size;
     refbuf->_count = 1;

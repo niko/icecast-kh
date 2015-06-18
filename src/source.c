@@ -736,7 +736,11 @@ static int source_queue_advance (client_t *client)
 
     lag = source->client->queue_pos - client->queue_pos;
 
-    if (client->flags & CLIENT_HAS_INTRO_CONTENT) abort(); // trap
+    if (client->flags & CLIENT_HAS_INTRO_CONTENT)
+    {
+        ERROR0 ("source.c l 741");
+        abort(); // trap
+    }
 
     if (lag == 0)
     {
@@ -792,7 +796,10 @@ static int source_queue_advance (client_t *client)
         }
     }
     refbuf = client->refbuf;
-    if ((refbuf->flags & SOURCE_QUEUE_BLOCK) == 0 || refbuf->len > 66000)  abort();
+    if ((refbuf->flags & SOURCE_QUEUE_BLOCK) == 0 || refbuf->len > 66000){
+        ERROR0 ("source.c l 800");
+        abort();
+    }
 
     if (client->pos < refbuf->len)
         ret = source->format->write_buf_to_client (client);

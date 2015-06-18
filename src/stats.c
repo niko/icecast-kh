@@ -623,7 +623,10 @@ static void process_source_event (stats_event_t *event)
         }
         snode = (stats_source_t *)calloc(1,sizeof(stats_source_t));
         if (snode == NULL)
+        {
+            ERROR0 ("stats.c l 627");
             abort();
+        }
         DEBUG1 ("new source stat %s", event->source);
         snode->source = (char *)strdup(event->source);
         snode->stats_tree = avl_tree_new(_compare_stats, NULL);
@@ -1387,8 +1390,10 @@ long stats_handle (const char *mount)
     if (src_stats == NULL)
     {
         src_stats = (stats_source_t *)calloc (1, sizeof (stats_source_t));
-        if (src_stats == NULL)
+        if (src_stats == NULL){
+            ERROR0 ("stats.c l 1394");
             abort();
+        }
         DEBUG1 ("new source stat %s", mount);
         src_stats->source = (char *)strdup (mount);
         src_stats->stats_tree = avl_tree_new (_compare_stats, NULL);
